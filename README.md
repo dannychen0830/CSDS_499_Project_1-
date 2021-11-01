@@ -3,4 +3,6 @@
 Overleaf link: [https://www.overleaf.com/project/616745d602523a0a26b2a4fd]
 
 TODO:
-- motion model ...
+- motion model
+- sensor model
+- create map 
