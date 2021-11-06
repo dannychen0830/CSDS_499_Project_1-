@@ -5,6 +5,7 @@
 %   param - parameters for error [a, b, max, s, w]
 %            a, b - linear function, max - max reading, s - std, w - error
 %            to gaussian weight
+%           suggested: [0.0200, 0.2000, 5.0000, 0.1000, 0.1000]
 % output: 
 %   y - a measurement 
 
