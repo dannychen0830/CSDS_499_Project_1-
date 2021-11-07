@@ -1,5 +1,14 @@
-% belief assignment given true distance
-
+% get the probability of the sensor measurement given position and map
+% input: 
+%   z - the measurement 
+%   x - true distance from robot to obstable in the direction of bearing
+%   param - parameters for error [a, b, max, s, w]
+%            a, b - linear function, max - max reading, s - std, w - error
+%            to gaussian weight
+%           suggested: [0.0200, 0.2000, 5.0000, 0.1000, 0.1000]
+% output: 
+%   p - the probability of getting the sensor measurement given robot
+%   position and map
 function p = prob_sensor_measurement(z, x, param)
 a = param(1); b = param(2); max = param(3); s = param(4)*1.5; w = param(5); 
 if z == 0,
