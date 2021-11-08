@@ -20,6 +20,6 @@ elseif z == max,
         p = (1-b-a);
     end
 else 
-    p = (a + (b-a)/max*z)*w + (normcdf(z+s*0.05,x,s)-normcdf(z,x,s))*(1-w);
+    p = (a + (b-a)/max*z)*w*0.05 + (normcdf(z+s*0.05,x,s)-normcdf(z,x,s))*(1-w);
 end
 end

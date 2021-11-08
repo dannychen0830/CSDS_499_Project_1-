@@ -81,16 +81,20 @@ scale = 10;
 map(1.8*scale : 2*scale,:) = 1;
 map(:, 12*scale : 12.2*scale) = 1;
 map(12*scale:12.2*scale, :) = 1;
-heatmap(map,'GridVisible', 'off', 'XDisplayLabels',nan(dim,1),'YDisplayLabels',nan(dim,1))
+map(:,1:2) = 1; map(:,dim-2:dim) = 1; map(1:2,:) = 1; map(dim-2:dim,:) = 1; % set walls on boundary
 
 % create the movements 
-motion = [6, 7, pi/2; 6, 8, pi/2; 6, 9, pi/2; 6, 10, 0; 7, 10, 0; 8, 10, 0; 9, 10, 3*pi/2; 9, 9, 3*pi/2; 9, 8, 3*pi/2; 9, 7, 3*pi/2];
+motion = [6, 7, pi/2; 6, 8, pi/2; 6, 9, pi/2; 6, 10, 0; 7, 10, 0; 8, 10, 0;  9, 10, -pi/2; 9, 9, -pi/2; 9, 8, -pi/2; 9, 7, -pi/2];
 
+for i=1:length(motion), map(scale*motion(i,1),scale*motion(i,2)) = 2; end
+imagesc(map)%,'GridVisible', 'off', 'XDisplayLabels',nan(dim,1),'YDisplayLabels',nan(dim,1))
+axis off
+% scatter(motion(:,1),motion(:,2),'filled')
 %%  inference
 
 % create map (log likelihood) and inference parameter
 m = zeros(dim);
-param = [0.02, 0.02, 5, 0.1, 0.05];
+param = [0.05, 0.02, 5, 0.1, 0.1];
 
 % start simulation
 for u=1:length(motion)
@@ -139,4 +143,6 @@ end
 m = 1-1./(1+exp(m));
 
 %% show final map
-heatmap(m,'GridVisible', 'off', 'XDisplayLabels',nan(dim,1),'YDisplayLabels',nan(dim,1))
+for i=1:length(motion), m(scale*motion(i,1),scale*motion(i,2)) = 2; end
+imagesc(m)%,'GridVisible', 'off', 'XDisplayLabels',nan(dim,1),'YDisplayLabels',nan(dim,1))
+axis off

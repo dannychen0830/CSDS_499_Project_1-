@@ -11,15 +11,15 @@ map(1.8*scale : 2*scale,:) = 1;
 map(:, 12*scale : 12.2*scale) = 1;
 map(12*scale:12.2*scale, :) = 1;
 map(:,1:2) = 1; map(:,dim-2:dim) = 1; map(1:2,:) = 1; map(dim-2:dim,:) = 1; % set walls on boundary
-heatmap(map,'GridVisible', 'off', 'XDisplayLabels',nan(dim,1),'YDisplayLabels',nan(dim,1))
+imagesc(map)%,'GridVisible', 'off', 'XDisplayLabels',nan(dim,1),'YDisplayLabels',nan(dim,1))
 
 % create the movements (use this as the actual motion, too)
-motion = [6, 7, pi/2; 6, 8, pi/2; 6, 9, pi/2; 6, 10, 0; 7, 10, 0; 8, 10, 0; 9, 10, 3*pi/2; 9, 9, 3*pi/2; 9, 8, 3*pi/2; 9, 7, 3*pi/2];
+motion = [6, 7, pi/2; 6, 8, pi/2; 6, 9, pi/2; 6, 10, 0; 7, 10, 0; 8, 10, 0;  9, 10, -pi/2; 9, 9, -pi/2; 9, 8, -pi/2; 9, 7, -pi/2];
 
 %% Particle filter
 
-np = 2000; % number of particles 
-param = [0.02, 0.02, 5, 0.1, 0]; % parameters for sensor model
+np = 1000; % number of particles 
+param = [0.05, 0.02, 5, 0.1, 0.1]; % parameters for sensor model
 alpha = [0.01, 0.002, 0.0001, 0.0001]; % motion noise parameter
 
 % initialize robot
